@@ -1,0 +1,10 @@
+{
+    "version": 0,
+    "tools": {
+        "pinger": {
+            "label": "MQTT",
+            "path": "mqtt.html"
+        }
+    },
+    "content-security-policy": "img-src * data: 'unsafe-inline'; default-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src wss://test.mosquitto.org:8081"
+}

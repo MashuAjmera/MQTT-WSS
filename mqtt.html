@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Check MQTT</title>
+    <script src="mqttws31.js"></script>
+  </head>
+  <body style="">
+    <button id="connect">1. Connect</button>
+    <button id="subscribe"
+      onclick="client.subscribe('testtopic/romantic', {qos: 2}); alert('Subscribed');"
+    >
+      2. Subscribe
+    </button>
+    <button id="publish" onclick="publish('Hello Foo !','testtopic/romantic',2);">
+      3. Publish
+    </button>
+    <button id="disconnect" onclick="client.disconnect();">(4. Disconnect)</button>
+    <div id="messages"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

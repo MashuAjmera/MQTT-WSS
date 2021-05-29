@@ -5,10 +5,8 @@ const disconnectb = document.getElementById("disconnect");
 
 //Using the HiveMQ public Broker, with a random client Id
 var client = new Messaging.Client(
-  //"broker.mqttdashboard.com",
-  //8000,
-  "test.mosquitto.org",
-  8081,
+  "localhost",
+  9001,
   "myclientid_" + parseInt(Math.random() * 100, 10)
 );
 
@@ -47,6 +45,7 @@ function connect(){
 //Connect Options
 var options = {
   timeout: 3,
+  useSSL: true,
   //Gets Called if the connection has sucessfully been established
   onSuccess: function () {
     alert("Connected");

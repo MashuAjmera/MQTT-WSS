@@ -908,10 +908,10 @@ Messaging = (function (global) {
 
     ClientImpl.prototype._doConnect = function (host, port) {
         // When the socket is open, this client will send the CONNECT WireMessage using the saved parameters. 
-        //if (this.connectOptions.useSSL)
-            wsurl = ["wss://", host, ":", port, "/mqtt"].join("");
-        //else
-            //wsurl = ["ws://", host, ":", port, "/mqtt"].join("");
+        if (this.connectOptions.useSSL)
+            wsurl = ["wss://", host, ":", port].join("");
+        else
+            wsurl = ["ws://", host, ":", port].join("");
         this.connected = false;
         this.socket = new WebSocket(wsurl, 'mqttv3.1');
         this.socket.binaryType = 'arraybuffer';

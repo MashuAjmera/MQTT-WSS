@@ -1,44 +1,64 @@
 # MQTT-WSS
 
 Install Chrome: `sudo dpkg -i google-chrome-stable_current_amd64.deb`
+
 Install MQTTBox MQTT Client chrome extension
 
-Username password in broker
-https://stackoverflow.com/questions/63078589/im-able-to-connect-to-mqtt-broker-running-in-a-container-with-any-client-certif
+Username password in broker: https://stackoverflow.com/questions/63078589/im-able-to-connect-to-mqtt-broker-running-in-a-container-with-any-client-certif
 
 ## Brokers
 ### Use Public Broker
 MQTT Brokers with Websockets to check: http://www.steves-internet-guide.com/mqtt-websockets/
+
 Installing Broker on Docker
-Install docker: sudo apt install snapd \n sudo snap install docker
-Check all Docker container status: sudo docker ps -a
-Copy file from pc to docker: sudo docker cp mosquitto.conf 836e6b60e113:/mosquitto/config
-Know IP of docker container: sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 836e6b60e113
 
-Install MQTT Broker on docker: sudo docker run -it -d -p 1883:1883 eclipse-mosquitto:1.6
-Remove containers: sudo docker rm 69382c66b297 e5941c21f7c6
-See docker container images: sudo docker images
-Remove docker images: sudo docker rmi 0a64a2b6149a
-Setup eclipse mosquito image along with WebSockets: sudo docker run -it  -d  -p 1883:1883 -p 9001:9001 eclipse-mosquitto
+Install docker: `sudo apt install snapd \n sudo snap install docker`
 
-Execute container: sudo docker exec -it f320e517eeb9 sh
-Install Vim tex editor in docker: apk add vim
-Open file: vim /mosquitto/config/mosquitto.conf
-Edit file: i
-Under Listerners: listener 9001 \n protocol websockets
-Under Security: allow_anonymous true
-Close editing: Excape key
-Save: :wq
-Exit: exit
+Check all Docker container status: `sudo docker ps -a`
 
-apk add openssl
-mkdir /mosquitto/certs
-First create a key pair for the CA: sudo openssl genrsa -des3 -out ca.key 2048
+Copy file from pc to docker: `sudo docker cp mosquitto.conf 836e6b60e113:/mosquitto/config`
+
+Know IP of docker container: `sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 836e6b60e113`
+
+Install MQTT Broker on docker: `sudo docker run -it -d -p 1883:1883 eclipse-mosquitto:1.6`
+
+Remove containers: `sudo docker rm 69382c66b297 e5941c21f7c6`
+
+See docker container images: `sudo docker images`
+
+Remove docker images: `sudo docker rmi 0a64a2b6149a`
+
+Setup eclipse mosquito image along with WebSockets: `sudo docker run -it  -d  -p 1883:1883 -p 9001:9001 eclipse-mosquitto`
+
+Execute container: `sudo docker exec -it f320e517eeb9 sh`
+
+Install Vim tex editor in docker: `apk add vim`
+
+Open file: `vim /mosquitto/config/mosquitto.conf`
+
+Edit file: `i`
+
+Under Listerners: `listener 9001` and `protocol websockets`
+
+Under Security: `allow_anonymous true`
+
+Close editing: `Esc` key
+
+Save: `:wq`
+
+Exit: `exit`
+
+`apk add openssl`
+
+`mkdir /mosquitto/certs`
+
+First create a key pair for the CA: `sudo openssl genrsa -des3 -out ca.key 2048`
 Password: 12345678
  
-Now Create a certificate for the CA using the CA key that we created in step 1
-Command is:  sudo openssl req -new -x509 -days 1826 -key ca.key -out ca.crt
+Now Create a certificate for the CA using the CA key that we created in step 1: `sudo openssl req -new -x509 -days 1826 -key ca.key -out ca.crt`
+
 Password: 12345678
+
 Common Name: mashuajmera
  
 Now we create a server key pair that will be used by the broker
